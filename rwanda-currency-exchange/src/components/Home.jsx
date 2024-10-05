@@ -3,6 +3,7 @@ import CurrencySelection from './CurrencySelection'
 import AmountInput from './AmountInput'
 import ConversionResult from './ConversionResult'
 import Header from './Header'
+import HistoricalChart from './HistoricalChart'
 
 function Home() {
   const [currencies, setCurrencies] = useState([])
@@ -65,7 +66,7 @@ function Home() {
 
     return result < 1 ? result.toFixed(6) : result.toFixed(2)
   }
-  
+
 
   return (
     <div className='min-h-screen flex flex-col'>
@@ -144,7 +145,7 @@ function Home() {
                   <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>10Y</button>
                 </div>
                 <div className='bg-gray-100 h-48 rounded-md flex justify-center items-center'>
-                  <p>Chart will be here</p>
+                  <HistoricalChart baseCurrency="USD" targetCurrency="RWF" />
                 </div>
               </section>
             </div>

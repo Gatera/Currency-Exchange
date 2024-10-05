@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 
 const fetchHistoricalData = async (startDate, endDate, baseCurrency, targetCurrency) => {
     const apiKey = import.meta.env.VITE_GITHUB_API_KEY
@@ -28,7 +29,7 @@ function HistoricalChart({ baseCurrency, targetCurrency }) {
 
     useEffect(() => {
         const startDate = '2024-01-01'
-        const endDate = '2024-01-10'
+        const endDate = '2024-10-04'
 
         fetchHistoricalData(startDate, endDate, baseCurrency, targetCurrency)
             .then((data) => setHistoricalRates(data))
@@ -36,15 +37,26 @@ function HistoricalChart({ baseCurrency, targetCurrency }) {
     }, [baseCurrency, targetCurrency])
 
   return (
-    <div>
+    <div className='w-full h-96'>
         {historicalRates.length > 0 ? (
-            <ul>
-                {historicalRates.map((rate) => (
-                    <li key={rate.date}>
-                        {rate.date}: {rate.rate}
-                    </li>
-                ))}
-            </ul>
+            <ResponsiveContainer className='w-full h-full'>
+                <LineChart data={historicalRates}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type='monotone' dataKey='rate' stroke='#8884d8' />
+                </LineChart>
+            </ResponsiveContainer>
+
+            // <ul>
+            //     {historicalRates.map((rate) => (
+            //         <li key={rate.date}>
+            //             {rate.date}: {rate.rate}
+            //         </li>
+            //     ))}
+            // </ul>
         ): (
             <p>Loading historical data...</p>
         )}
