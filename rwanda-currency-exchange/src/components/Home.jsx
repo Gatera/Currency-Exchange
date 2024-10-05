@@ -131,7 +131,7 @@ function Home() {
 
               </section>
 
-              <section className='bg-white shadow-cstm p-6 md:p-8 rounded-lg'>
+             <section className='bg-white shadow-cstm p-6 md:p-8 rounded-lg'>
                 <h2 className='text-lg font-bold mb-4'>RWF to KES Chart</h2>
                 <p className='text-red-500 font-bold text-lg mb-4'>-22.36% (1Y)</p>
                 <div className='flex justify-center space-x-4 mb-6 overflow-x-auto'>
@@ -144,8 +144,8 @@ function Home() {
                   <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>5Y</button>
                   <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>10Y</button>
                 </div>
-                <div className='bg-gray-100 h-48 rounded-md flex justify-center items-center'>
-                  <HistoricalChart baseCurrency="USD" targetCurrency="RWF" />
+                <div className='bg-gray-100 h-48 rounded-md flex'>
+                  <HistoricalChart baseCurrency={fromCurrency} targetCurrency={toCurrency} />
                 </div>
               </section>
             </div>
