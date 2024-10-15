@@ -20,7 +20,7 @@ function calculateStartDate(range) {
             startDate.setFullYear(today.getFullYear() - 1)
             break
         default:
-            startDate.setFullYear(today.getFullYear() - 1)
+            startDate.setMonth(today.getMonth() - 1)
             break;
     }
 
@@ -32,14 +32,14 @@ function HistoricalChart({ baseCurrency, targetCurrency }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [percentageChange, setPercentageChange] = useState(null)
-    const [dateRange, setDateRange] = useState('1Y')
-    const [startDate, setStartDate] = useState(calculateStartDate('1Y'))
+    const [dateRange, setDateRange] = useState('1M')
+    const [startDate, setStartDate] = useState(calculateStartDate('1M'))
 
     useEffect(() => {
         const endDate = new Date().toISOString().split('T')[0]
 
         const fetchHistoricalData = async (startDate, endDate, baseCurrency, targetCurrency) => {
-            const apiKey = import.meta.env.VITE_GITHUB_API_KEY
+            const apiKey = import.meta.env.VITE_OPENEXCH_API_KEY
             let currentDate = new Date(startDate)
             const end = new Date(endDate)
             const historicalData = []

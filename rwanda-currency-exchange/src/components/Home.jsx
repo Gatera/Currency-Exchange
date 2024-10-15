@@ -22,7 +22,7 @@ function Home() {
       setError(null) //Clear any previous errors
 
       try {
-        const apiKey = import.meta.env.VITE_GITHUB_API_KEY
+        const apiKey = import.meta.env.VITE_OPENEXCH_API_KEY
         const response = await fetch(`https://openexchangerates.org/api/latest.json?app_id=${apiKey}`)
 
         if (!response.ok) {
