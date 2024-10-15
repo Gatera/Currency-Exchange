@@ -4,6 +4,7 @@ import AmountInput from './AmountInput'
 import ConversionResult from './ConversionResult'
 import Header from './Header'
 import HistoricalChart from './HistoricalChart'
+import Footer from './Footer'
 
 function Home() {
   const [currencies, setCurrencies] = useState([])
@@ -132,32 +133,13 @@ function Home() {
               </section>
 
              <section className='bg-white shadow-cstm p-6 md:p-8 rounded-lg'>
-                <h2 className='text-lg font-bold mb-4'>RWF to KES Chart</h2>
-                <p className='text-red-500 font-bold text-lg mb-4'>-22.36% (1Y)</p>
-                <div className='flex justify-center space-x-4 mb-6 overflow-x-auto'>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>12H</button>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>1D</button>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>1W</button>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>1M</button>
-                  <button className='text-sm text-blue-600 border border-gray-300 px-4 py-2 rounded-md'>1Y</button>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>2Y</button>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>5Y</button>
-                  <button className='text-sm text-gray-600 border border-gray-300 px-4 py-2 rounded-md'>10Y</button>
-                </div>
-                <div className='bg-gray-100 h-48 rounded-md flex'>
                   <HistoricalChart baseCurrency={fromCurrency} targetCurrency={toCurrency} />
-                </div>
               </section>
             </div>
         )}
         </main>
 
-        <footer className='bg-blue-600 text-white py-6'>
-          <div className='container mx-auto text-center'>
-            <p className='mb-2'>About Us | Help | Contact | Currency Converter | Currency Charts</p>
-            <p>&copy; 2024 RCE</p>
-          </div>
-        </footer>
+        <Footer />
     </div>
   )
 }
