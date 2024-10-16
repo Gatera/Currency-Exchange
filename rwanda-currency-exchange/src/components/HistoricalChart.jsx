@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import DateRange from './DateRange'
+import DateRangeButtons from './DateRangeButtons'
 import Chart from './Chart'
 
+// Function to calculate the start date for the chart
 function calculateStartDate(range) {
     const today = new Date()
     let startDate = new Date()
@@ -16,6 +17,9 @@ function calculateStartDate(range) {
         case '1M':
             startDate.setMonth(today.getMonth() - 1)
             break
+        case '3M':
+            startDate.setMonth(today.getMonth() - 3)
+            break
         case '1Y':
             startDate.setFullYear(today.getFullYear() - 1)
             break
@@ -24,9 +28,10 @@ function calculateStartDate(range) {
             break;
     }
 
-    return startDate.toISOString().split('T')[0]
+    return startDate.toISOString().split('T')[0] // Convert to 'YYYY-MM-DD' format only
 }
 
+// Display the chart based on the selected currencies and date range
 function HistoricalChart({ baseCurrency, targetCurrency }) {
     const [historicalRates, setHistoricalRates] = useState([])
     const [loading, setLoading] = useState(false)
@@ -36,8 +41,9 @@ function HistoricalChart({ baseCurrency, targetCurrency }) {
     const [startDate, setStartDate] = useState(calculateStartDate('1M'))
 
     useEffect(() => {
-        const endDate = new Date().toISOString().split('T')[0]
+        const endDate = new Date().toISOString().split('T')[0] // Get today's date
 
+        // Fetch historical data
         const fetchHistoricalData = async (startDate, endDate, baseCurrency, targetCurrency) => {
             const apiKey = import.meta.env.VITE_OPENEXCH_API_KEY
             let currentDate = new Date(startDate)
@@ -76,12 +82,13 @@ function HistoricalChart({ baseCurrency, targetCurrency }) {
                     break
                 }
         
-                currentDate.setDate(currentDate.getDate() + 1)
+                currentDate.setDate(currentDate.getDate() + 1) //Move to the following day
             }
         
             return historicalData
         }
-
+        
+        // Fetch and set historical data
         const fetchData = async () => {
             setLoading(true)
             setError(null)
@@ -116,8 +123,8 @@ function HistoricalChart({ baseCurrency, targetCurrency }) {
   return (
     <div>
         <h2 className='text-lg font-bold font-montserrat mb-4'>{baseCurrency} to {targetCurrency} Chart</h2>
-            <p className='text-red-500 font-bold text-lg mb-4'>{percentageChange}% (1Y)</p>
-            <DateRange onRangeChange={handleDateRangeChange} currentRange={dateRange} />
+            <p className='text-red-500 font-bold text-lg mb-4'>{percentageChange}% {dateRange}</p>
+            <DateRangeButtons onRangeChange={handleDateRangeChange} currentRange={dateRange} />
             <Chart historicalRates={historicalRates} loading={loading}/>
     </div>
   )

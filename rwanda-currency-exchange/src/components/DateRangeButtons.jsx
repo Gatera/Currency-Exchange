@@ -1,6 +1,6 @@
 import React from 'react'
 
-function DateRange({ onRangeChange, currentRange }) {
+function DateRangeButtons({ onRangeChange, currentRange }) {
   return (
     <div className='flex justify-center space-x-4 mb-6 overflow-x-auto'>
         <button
@@ -25,6 +25,13 @@ function DateRange({ onRangeChange, currentRange }) {
             1M
         </button>
         <button
+            onClick={() => onRangeChange('3M')}
+            className={
+                `text-sm ${currentRange === '3M' ? 'text-blue-600' : 'text-gray-600'}
+                border border-gray-300 px-4 py-2 rounded-md`}>
+            3M
+        </button>
+        <button
             onClick={() => onRangeChange('1Y')}
             className={
                 `text-sm ${currentRange === '1Y' ? 'text-blue-600' : 'text-gray-600'}
@@ -35,4 +42,4 @@ function DateRange({ onRangeChange, currentRange }) {
   )
 }
 
-export default DateRange
+export default DateRangeButtons

@@ -1,13 +1,15 @@
 import React from 'react'
 
-function CurrencySelection({ currencies, selectedCurrency, onChange}) {
+function CurrencySelectionDropdown({ currencies, selectedCurrency, onChange}) {
   return (
     <div>
+        {/* Currency selection options */}
         <select
         className='w-full border border-gray-300 rounded-md p-4'
         value={selectedCurrency}
         onChange={onChange}
         >
+          {/* Loop through the list to create each option in the dropdown */}
         {currencies.map(currency => (
             <option value={currency} key={currency}>
             {currency}
@@ -18,4 +20,4 @@ function CurrencySelection({ currencies, selectedCurrency, onChange}) {
   )
 }
 
-export default CurrencySelection
+export default CurrencySelectionDropdown

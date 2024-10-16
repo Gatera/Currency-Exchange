@@ -1,8 +1,9 @@
 import React from 'react'
 
-function AmountInput({ amount, onChange, readOnly = false }) {
+function AmountField({ amount, onChange, readOnly = false }) {
   return (
     <div className='flex flex-col'>
+      {/* Input field for entering or displaying the amount */}
         <input
             type="number"
             value={amount}
@@ -13,4 +14,4 @@ function AmountInput({ amount, onChange, readOnly = false }) {
   )
 }
 
-export default AmountInput
+export default AmountField

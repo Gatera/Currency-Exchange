@@ -5,14 +5,16 @@ function Chart({ historicalRates, loading }) {
   return (
     <div className='bg-gray-100 h-48 rounded-md flex'>
         <div className='w-full'>
+            {/* Display loading if data is still being fetched */}
             {loading ? (
                 <p>Loading historical data...</p>
             ) : historicalRates.length > 0 ? (
+                // Render once data is available
                 <ResponsiveContainer className='w-full h-full'>
                     <LineChart data={historicalRates}>
-                        <CartesianGrid strokeDasharray="3 3" />
+                        <CartesianGrid strokeDasharray="5 5" />
                         <XAxis dataKey="date" />
-                        <YAxis />
+                        <YAxis dataKey="rate"/>
                         <Tooltip />
                         <Legend />
                         <Line type='monotone' dataKey='rate' stroke='#8884d8' />
